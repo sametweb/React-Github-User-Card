@@ -1,15 +1,12 @@
 import React from "react";
+import SearchFollowersForm from "./SearchFollowersForm";
 import {
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Avatar,
-  IconButton,
-  InputBase
+  Avatar
 } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
-import ClearIcon from "@material-ui/icons/Clear";
 
 class FollowersList extends React.Component {
   render() {
@@ -17,29 +14,12 @@ class FollowersList extends React.Component {
       <>
         {this.props.followers && (
           <>
-            <div style={{ display: "flex", justifyContent: "space-between " }}>
-              <InputBase
-                fullWidth
-                placeholder="Search followers"
-                inputProps={{ "aria-label": "search followers" }}
-                onChange={this.props.handleSearchInput}
-                value={this.props.searchTerm}
-              />
-              <IconButton
-                type="submit"
-                aria-label="search"
-                onClick={this.props.searchFollowers}
-              >
-                <SearchIcon />
-              </IconButton>
-              <IconButton
-                type="reset"
-                aria-label="cancel"
-                onClick={this.props.clearForm}
-              >
-                <ClearIcon />
-              </IconButton>
-            </div>
+            <SearchFollowersForm
+              searchFollowers={this.props.searchFollowers}
+              clearForm={this.props.clearForm}
+              handleSearchInput={this.props.handleSearchInput}
+              searchTerm={this.props.searchTerm}
+            />
             <List>
               {this.props.followers.map(follower => {
                 return (
